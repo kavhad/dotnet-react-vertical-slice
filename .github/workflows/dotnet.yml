@@ -14,7 +14,7 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      working-directory: ./minimal-api/Minimal.API/
+      working-directory: minimal-api/Minimal.API/
 
     defaults:
       run:
