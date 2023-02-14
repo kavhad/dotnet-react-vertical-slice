@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MinimalAPI.Features.Todo;
 
-public static class TodosEndPoint
+public static class TodosAppServices
 { 
     internal static Task<IResult> GetTodos([FromServices] MinimalApiDbContext dbContext)
     {
@@ -14,7 +14,33 @@ public static class TodosEndPoint
         return Task.FromResult(
             Results.Ok(
                 todoListSet.Include(
-                    todoList => todoList.Todos).ToImmutableList()));
+                    todoList => todoList.Todos)
+                    .Select(it => 
+                        new TodoListDto(it.Id, it.Name, 
+                            it.Todos.Select(it2 => new TodoItemDto(it2.Id, it2.Name, it2.IsComplete)
+                        ).ToList()
+                    )
+                ).ToList()
+            )
+        );
+    }
+    
+    internal static async Task<IResult> GetTodo([FromServices] MinimalApiDbContext dbContext, int id)
+    {
+        var todoListSet = 
+            dbContext.Set<TodoList>();
+
+        var todoList =
+            await todoListSet
+                .Include(todoList => todoList.Todos)
+                .SingleOrDefaultAsync(x => x.Id == id);
+
+        if (todoList is null)
+            return Results.NotFound();
+
+        return Results.Ok(new TodoListDto(todoList.Id, todoList.Name,
+                todoList.Todos.Select(it2 => new TodoItemDto(it2.Id, it2.Name, it2.IsComplete)
+            ).ToList()));
     }
 
     internal static async Task<IResult> CreateTodoList([FromServices] MinimalApiDbContext dbContext, [FromBody] NewTodoListDto newTodoListDto)

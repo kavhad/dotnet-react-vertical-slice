@@ -3,7 +3,7 @@ using System.Collections.Immutable;
 namespace MinimalAPI;
 using Microsoft.EntityFrameworkCore;
 
-partial class MinimalApiDbContext : DbContext
+internal class MinimalApiDbContext : DbContext
 {
     private readonly ImmutableList<IModelBuilder> _modelBuilders;
 

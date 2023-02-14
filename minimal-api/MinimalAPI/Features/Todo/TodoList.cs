@@ -25,7 +25,7 @@ public class TodoList
         }
         
         public int Id { get; private set; }
-        public string? Name { get; private set; }
+        public string Name { get; private set; }
         public bool IsComplete { get; private set; }
         internal void SetName(string name)
         {

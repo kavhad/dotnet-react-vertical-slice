@@ -1,8 +1,11 @@
 using System.Net;
+using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using MinimalAPI;
 using MinimalAPI.Features.Todo;
+
+[assembly: InternalsVisibleTo("MinimalAPI.Tests")]
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.RegisterTodos();

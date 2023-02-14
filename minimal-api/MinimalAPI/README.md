@@ -17,5 +17,6 @@ MinimalAPI/     # Root directory.
    | - Todo    # Todo-feature which is an example of a vertical slice           
 |- IApiBuilder.cs # interface which supports vertical slicing of Minimal API
 |- IModelBuilder.cs # interface which supports vertical slicing of DbContext.
+|- MinimalApiDbContext.cs # entity framework dbcontext
 |- appsettings.json # application configuration.
 |- Program.cs # Main entry of application

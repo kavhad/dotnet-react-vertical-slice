@@ -2,6 +2,8 @@ using System.Text.Json.Serialization;
 
 namespace MinimalAPI.Features.Todo;
 
+public record TodoListDto(int id, string name, List<TodoItemDto> list);
+public record TodoItemDto(int id, string name, bool isComplete);
 
 public record NewTodoListDto
 {
