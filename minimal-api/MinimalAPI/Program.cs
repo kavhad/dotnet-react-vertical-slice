@@ -11,7 +11,7 @@ using MinimalAPI.Features.Todo;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.RegisterTodos();
 builder.Services.RegisterSwagger();
-builder.Services.AddDbContext<MinimalApiDbContext>(options => options.UseInMemoryDatabase("MinimalApi"));
+builder.Services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("MinimalApi"));
 
 var app = builder.Build();
 

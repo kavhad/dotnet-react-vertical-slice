@@ -7,7 +7,7 @@ namespace MinimalAPI.Features.Todo;
 
 public static class TodosAppApi
 { 
-    internal static Task<IResult> GetTodos([FromServices] MinimalApiDbContext dbContext)
+    internal static Task<IResult> GetTodos([FromServices] AppDbContext dbContext)
     {
         var todoListSet = 
             dbContext.Set<TodoList>();
@@ -25,7 +25,7 @@ public static class TodosAppApi
         );
     }
     
-    internal static async Task<IResult> GetTodo([FromServices] MinimalApiDbContext dbContext, int id)
+    internal static async Task<IResult> GetTodo([FromServices] AppDbContext dbContext, int id)
     {
         var todoListSet = 
             dbContext.Set<TodoList>();
@@ -43,7 +43,7 @@ public static class TodosAppApi
             ).ToList()));
     }
 
-    internal static async Task<IResult> CreateTodoList([FromServices] MinimalApiDbContext dbContext, [FromBody] NewTodoListDto newTodoListDto)
+    internal static async Task<IResult> CreateTodoList([FromServices] AppDbContext dbContext, [FromBody] NewTodoListDto newTodoListDto)
     {
         var todoListSet = dbContext.Set<TodoList>();
         var todoListResult = TodoList.NewTodoList(newTodoListDto);
@@ -52,7 +52,7 @@ public static class TodosAppApi
         return Results.Ok(todoListResult);
     }
 
-    internal static async Task<IResult> ChangeTodoListName([FromServices] MinimalApiDbContext dbContext,
+    internal static async Task<IResult> ChangeTodoListName([FromServices] AppDbContext dbContext,
         [FromBody] ChangeTodoListNameDto changeTodoListNameDto)
     {
         var todoList = await dbContext.Set<TodoList>().FindAsync(changeTodoListNameDto.Id);
@@ -64,7 +64,7 @@ public static class TodosAppApi
         return Results.Ok();
     }
 
-    internal static async Task<IResult> ChangeTodoItemName([FromServices] MinimalApiDbContext dbContext,
+    internal static async Task<IResult> ChangeTodoItemName([FromServices] AppDbContext dbContext,
         int id, [FromBody] ChangeTodoItemNameDto changeTodoItemNameDto)
     {
         var todoItem = await dbContext.Set<TodoList.Todo>().FindAsync(id);
@@ -76,7 +76,7 @@ public static class TodosAppApi
         
     }
     
-    internal static async Task<IResult> SetTodoItemStatus([FromServices] MinimalApiDbContext dbContext,
+    internal static async Task<IResult> SetTodoItemStatus([FromServices] AppDbContext dbContext,
         int id, [FromBody] ChangeTodoItemStatusDto changeTodoItemStatusDto)
     {
         var todoItem = await dbContext.Set<TodoList.Todo>().FindAsync(id);

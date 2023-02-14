@@ -5,13 +5,13 @@ using MinimalAPI.Features.Todo;
 
 namespace MinimalAPI.Tests.Features.Todo;
 
-public class TodosAppApiServicesTests
+public class TodosAppApiTests
 {
 
-    private readonly MinimalApiDbContext _dbContext =
+    private readonly AppDbContext _dbContext =
         new(
             new []{ new TodoModelBuilder() },
-            new DbContextOptionsBuilder<MinimalApiDbContext>()
+            new DbContextOptionsBuilder<AppDbContext>()
                 .UseInMemoryDatabase(databaseName: "MinimalAPI")
                 .Options
         );

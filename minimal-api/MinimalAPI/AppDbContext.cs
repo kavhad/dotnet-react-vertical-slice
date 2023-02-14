@@ -3,13 +3,13 @@ using System.Collections.Immutable;
 namespace MinimalAPI;
 using Microsoft.EntityFrameworkCore;
 
-internal class MinimalApiDbContext : DbContext
+internal class AppDbContext : DbContext
 {
     private readonly ImmutableList<IModelBuilder> _modelBuilders;
 
-    public MinimalApiDbContext(
+    public AppDbContext(
         IEnumerable<IModelBuilder> modelBuilders,
-        DbContextOptions<MinimalApiDbContext> options) : base(options)
+        DbContextOptions<AppDbContext> options) : base(options)
     {
         _modelBuilders = modelBuilders.ToImmutableList();
     }
