@@ -5,7 +5,7 @@ using MinimalAPI.Features.Todo;
 
 namespace MinimalAPI.Tests.Features.Todo;
 
-public class TodosAppServicesTests
+public class TodosAppApiServicesTests
 {
 
     private readonly MinimalApiDbContext _dbContext =
@@ -22,7 +22,7 @@ public class TodosAppServicesTests
         //Arrange setup dbContext
         
         //Act
-        var results = (Ok<List<TodoListDto>>) await TodosAppServices.GetTodos(_dbContext);
+        var results = (Ok<List<TodoListDto>>) await TodosAppApiServices.GetTodos(_dbContext);
         
         //Assert
         Assert.Equal(200, results.StatusCode);
@@ -33,9 +33,9 @@ public class TodosAppServicesTests
     public async Task CreateNewTodoTests()
     {
         //Act
-        var results = (Ok<TodoList>) await TodosAppServices.CreateTodoList(_dbContext,
+        var results = (Ok<TodoList>) await TodosAppApiServices.CreateTodoList(_dbContext,
             new NewTodoListDto("test-list", 
-                new List<NewTodo>(new[] { new NewTodo("test-item", false) })));
+                new List<NewTodoItem>(new[] { new NewTodoItem("test-item", false) })));
         
         //Assert
         Assert.Equal(200, results.StatusCode);
@@ -56,7 +56,7 @@ public class TodosAppServicesTests
         await _dbContext.SaveChangesAsync();
         
         //Act
-        var results = (Ok<TodoListDto>) await TodosAppServices.GetTodo(_dbContext, 1); //assuming initial id is 1
+        var results = (Ok<TodoListDto>) await TodosAppApiServices.GetTodo(_dbContext, 1); //assuming initial id is 1
         
         //Assert
         Assert.Equal(200, results.StatusCode);

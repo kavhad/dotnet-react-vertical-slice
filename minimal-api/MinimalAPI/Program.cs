@@ -3,12 +3,14 @@ using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using MinimalAPI;
+using MinimalAPI.Features.Swagger;
 using MinimalAPI.Features.Todo;
 
 [assembly: InternalsVisibleTo("MinimalAPI.Tests")]
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.RegisterTodos();
+builder.Services.RegisterSwagger();
 builder.Services.AddDbContext<MinimalApiDbContext>(options => options.UseInMemoryDatabase("MinimalApi"));
 
 var app = builder.Build();

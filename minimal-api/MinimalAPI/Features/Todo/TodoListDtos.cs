@@ -8,13 +8,13 @@ public record TodoItemDto(int id, string name, bool isComplete);
 public record NewTodoListDto
 {
     public string Name { get; }
-    public List<NewTodo> List { get; }
+    public List<NewTodoItem> List { get; }
 
     [JsonConstructor]
-    public NewTodoListDto(string name, List<NewTodo> list) =>
+    public NewTodoListDto(string name, List<NewTodoItem> list) =>
         (Name, List) = (TodoList.NameValidator.Validate(name), list);
 }
-public record NewTodo(String name, bool isComplete);
+public record NewTodoItem(String name, bool isComplete);
 public record ChangeTodoListNameDto
 {
     public int Id { get; }
@@ -35,4 +35,4 @@ public record ChangeTodoItemNameDto
         Name = TodoList.NameValidator.Validate(name);
 }
 
-public record SetTodoStatusDto(bool IsComplete);
+public record ChangeTodoItemStatusDto(bool IsComplete);

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MinimalAPI.Features.Todo;
 
-public static class TodosAppServices
+public static class TodosAppApiServices
 { 
     internal static Task<IResult> GetTodos([FromServices] MinimalApiDbContext dbContext)
     {
@@ -77,12 +77,12 @@ public static class TodosAppServices
     }
     
     internal static async Task<IResult> SetTodoItemStatus([FromServices] MinimalApiDbContext dbContext,
-        int id, [FromBody] SetTodoStatusDto setTodoStatusDto)
+        int id, [FromBody] ChangeTodoItemStatusDto changeTodoItemStatusDto)
     {
         var todoItem = await dbContext.Set<TodoList.Todo>().FindAsync(id);
         if (todoItem is null)
             return Results.NotFound();
-        todoItem.SetIsComplete(setTodoStatusDto.IsComplete);
+        todoItem.SetIsComplete(changeTodoItemStatusDto.IsComplete);
         await dbContext.SaveChangesAsync();
         
         return Results.Ok();
