@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MinimalAPI.Features.Todo;
 
-public static class TodosAppApiServices
+public static class TodosAppApi
 { 
     internal static Task<IResult> GetTodos([FromServices] MinimalApiDbContext dbContext)
     {

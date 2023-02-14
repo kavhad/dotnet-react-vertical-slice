@@ -35,8 +35,6 @@ app.UseExceptionHandler(exceptionHandlerApp =>
     });
 });
 
-app.MapGet("/", () => "Hello World!");
-
 foreach (var apiBuilder in app.Services.GetService<IEnumerable<IApiBuilder>>()!)
 {
     apiBuilder.BuildApi(app);
