@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Kaveh Hadjari",
+  "classifications": [ "Common", "Web", "Api" ],
+  "identity": "ExampleTemplate.MinimalAPI",
+  "name": "Example templates: minimal api",
+  "shortName": "MinimalAPI",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  }
+}
