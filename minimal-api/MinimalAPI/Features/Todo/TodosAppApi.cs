@@ -7,22 +7,19 @@ namespace MinimalAPI.Features.Todo;
 
 public static class TodosAppApi
 { 
-    internal static Task<IResult> GetTodos([FromServices] AppDbContext dbContext)
+    internal static async Task<IResult> GetTodos([FromServices] AppDbContext dbContext)
     {
         var todoListSet = 
             dbContext.Set<TodoList>();
-        return Task.FromResult(
-            Results.Ok(
-                todoListSet.Include(
-                    todoList => todoList.Todos)
-                    .Select(it => 
-                        new TodoListDto(it.Id, it.Name, 
+        return Results.Ok(
+                await todoListSet.Include(todoList => todoList.Todos)
+                    .Select(it =>
+                        new TodoListDto(it.Id, it.Name,
                             it.Todos.Select(it2 => new TodoItemDto(it2.Id, it2.Name, it2.IsComplete)
-                        ).ToList()
-                    )
-                ).ToList()
-            )
-        );
+                            ).ToList()
+                        )
+                    ).ToListAsync()
+            );
     }
     
     internal static async Task<IResult> GetTodo([FromServices] AppDbContext dbContext, int id)
