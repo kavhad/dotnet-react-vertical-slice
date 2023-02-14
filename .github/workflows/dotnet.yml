@@ -13,12 +13,10 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    env:
-      working-directory: /minimal-api/Minimal.API
-
+  
     defaults:
       run:
-        working-directory: ${{ env.working-directory }}
+        working-directory: minimal-api/MinimalAPI
 
     steps:
     - uses: actions/checkout@v3
