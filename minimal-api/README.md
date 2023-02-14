@@ -5,6 +5,9 @@ defining APIs using classes and attributes.
 The template also implements the Vertical Slice Architecture
 (Here's a explainer youtube video by Derek Comartin https://www.youtube.com/watch?v=lsddiYwWaOQ).
 
+### Build status
+[![.NET](https://github.com/kavhad/dotnet-project-templates/actions/workflows/dotnet.yml/badge.svg)](https://github.com/kavhad/dotnet-project-templates/actions/workflows/dotnet.yml)
+
 ### Folder structure
 
 Here's a folder structure for the MinimalAPI project:
