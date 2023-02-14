@@ -18,7 +18,7 @@ MinimalAPI/     # Project template root directory.
 |- obj/        # Folder used to store files used for build and debugging.
 |- Features/   # Each vertical slice has all code in it's Feature-folder in this folder.
    | - Todo    # Todo-feature which is an example of a vertical slice  
-   | - Swagger # Swagger-feature to enable api documentation generated          
+   | - Swagger # Swagger-feature to enable api documentation generation          
 |- IApiBuilder.cs # interface which supports vertical slicing of Minimal API
 |- IModelBuilder.cs # interface which supports vertical slicing of DbContext.
 |- AppDbContext.cs # Application EF Core DbContext 
