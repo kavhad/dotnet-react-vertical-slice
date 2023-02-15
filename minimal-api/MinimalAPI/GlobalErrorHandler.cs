@@ -15,6 +15,8 @@ internal static class GlobalErrorHandler
         
                 if (ehpF?.Error is ArgumentException)
                     context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                else if (ehpF?.Error is not null)
+                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
         
                 await context.Response.WriteAsJsonAsync(
                     ehpF?.Error switch

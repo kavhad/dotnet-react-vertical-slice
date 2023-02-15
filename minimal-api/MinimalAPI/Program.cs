@@ -10,6 +10,8 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseInMemoryDataba
 
 var app = builder.Build();
 
+app.UseStaticFiles();
+
 GlobalErrorHandler.Register(app);
 
 foreach (var apiBuilder in app.Services.GetService<IEnumerable<IApiBuilder>>()!)
@@ -17,5 +19,6 @@ foreach (var apiBuilder in app.Services.GetService<IEnumerable<IApiBuilder>>()!)
     apiBuilder.BuildApi(app);
 }
 
+app.MapFallbackToFile("index.html");
 app.Run();
 

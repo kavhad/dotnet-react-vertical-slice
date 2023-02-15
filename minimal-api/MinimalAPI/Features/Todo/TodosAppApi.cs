@@ -7,6 +7,7 @@ namespace MinimalAPI.Features.Todo;
 
 public static class TodosAppApi
 { 
+    [ProducesResponseType(StatusCodes.Status200OK, Type=typeof(List<TodoListDto>))]
     internal static async Task<IResult> GetTodos([FromServices] AppDbContext dbContext)
     {
         var todoListSet = 
@@ -14,14 +15,12 @@ public static class TodosAppApi
         return Results.Ok(
                 await todoListSet.Include(todoList => todoList.Todos)
                     .Select(it =>
-                        new TodoListDto(it.Id, it.Name,
-                            it.Todos.Select(it2 => new TodoItemDto(it2.Id, it2.Name, it2.IsComplete)
-                            ).ToList()
-                        )
+                        new TodoListDto(it)
                     ).ToListAsync()
             );
     }
     
+    [ProducesResponseType(StatusCodes.Status200OK, Type=typeof(TodoListDto))]
     internal static async Task<IResult> GetTodo([FromServices] AppDbContext dbContext, int id)
     {
         var todoListSet = 
@@ -35,18 +34,17 @@ public static class TodosAppApi
         if (todoList is null)
             return Results.NotFound();
 
-        return Results.Ok(new TodoListDto(todoList.Id, todoList.Name,
-                todoList.Todos.Select(it2 => new TodoItemDto(it2.Id, it2.Name, it2.IsComplete)
-            ).ToList()));
+        return Results.Ok(new TodoListDto(todoList));
     }
 
+    [ProducesResponseType(StatusCodes.Status200OK, Type=typeof(TodoListDto))]
     internal static async Task<IResult> CreateTodoList([FromServices] AppDbContext dbContext, [FromBody] NewTodoListDto newTodoListDto)
     {
         var todoListSet = dbContext.Set<TodoList>();
         var todoListResult = TodoList.NewTodoList(newTodoListDto);
         todoListSet.Add(todoListResult);
         await dbContext.SaveChangesAsync();
-        return Results.Ok(todoListResult);
+        return Results.Ok(new TodoListDto(todoListResult));
     }
 
     internal static async Task<IResult> ChangeTodoListName([FromServices] AppDbContext dbContext,

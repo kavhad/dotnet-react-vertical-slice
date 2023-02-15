@@ -4,10 +4,10 @@ public class TodoApiBuilder : IApiBuilder
 {
     public void BuildApi(WebApplication app)
     {
-        app.MapGet("/todos", TodosAppApi.GetTodos);
-        app.MapGet("/todos/{id}", TodosAppApi.GetTodo);
-        app.MapPost("/todos", TodosAppApi.CreateTodoList);
-        app.MapPut("/todos/changeName", TodosAppApi.ChangeTodoListName);
+        app.MapGet("/todo-list/all", TodosAppApi.GetTodos);
+        app.MapGet("/todo-list/{id}", TodosAppApi.GetTodo);
+        app.MapPost("/todo-list", TodosAppApi.CreateTodoList);
+        app.MapPut("/todo-list/changeName", TodosAppApi.ChangeTodoListName);
         app.MapPut("/todo-item/{id}/changeName", TodosAppApi.ChangeTodoItemName);
         app.MapPut("/todo-item/{id}/setTodoStatus", TodosAppApi.SetTodoItemStatus);
     }
