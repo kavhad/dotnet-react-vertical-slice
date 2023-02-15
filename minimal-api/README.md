@@ -28,5 +28,6 @@ MinimalAPI/                 # Project template root directory.
 |- Program.cs               # Main entry of application
 |- FeatureRegistrator       # Scans assembly for classes that register features
 |- GlobalErrorHandler.cs    # API error handling
+|- clientapp/               # React frontend demo app
 MinimalAPI.Tests/           # Unit tests project
 
