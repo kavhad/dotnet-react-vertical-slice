@@ -2,7 +2,7 @@ namespace MinimalAPI.Features.Swagger;
 
 public static class SwaggerStartup
 {
-    public static void RegisterSwagger(this IServiceCollection services)
+    public static void Register(this IServiceCollection services)
     {
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
