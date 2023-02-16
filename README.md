@@ -1,10 +1,10 @@
 # .NET/React.JS with Vertical Slice Architecture
-An opinionated boiler plate code for Fullstack developer with .NET and React. 
+Boilerplate code for fullstack development with .NET and React that implements
+Vertical Slice Architecture. Each slice runs through 
+both backend and frontend so that frontend and backend code for features live side by side. 
 
-The project implements a Vertical Slice Architecture that runs through 
-backend and frontend (meaning no separate ClientApp folder for frontend parts). 
 Further we reduce the need to write client API glue code by using SwaggerGen and
-the excellent npm package openapi-typescript-codegen
+the npm package openapi-typescript-codegen
 (https://github.com/ferdikoomen/openapi-typescript-codegen).
 
 ### Build status
@@ -76,8 +76,7 @@ run following in your shell:
 npm run generate
 ```
 
-This command uses the openapi-typescript-codegen npm package 
-(https://github.com/ferdikoomen/openapi-typescript-codegen)
+Note that the backend must be running and expose Swagger (OpenApi) definitions.
 
 ## Docker How To
 TODO
