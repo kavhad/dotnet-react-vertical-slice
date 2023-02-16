@@ -18,23 +18,18 @@ reduced dependencies, and improved agility in large and complex applications. Th
 include improved maintainability, scalability, and flexibility, as well as faster time-to-market 
 and greater developer productivity.
 
-The disadvantage of this architecture in this specific project type is 
-that we don't get clean separation of horizontal layers e.g if a team have coders that
-work exclusively on backend and frontend they still see and can access files for both parts of the system.
-
-### Folder structure
-
-The project source code is under the __src__-folder where both frontend and backend code
+### Directory structure
+The project source code is under the __src__-directory where both frontend and backend code
 is side by side firs
 
 ```
-DotnetReactVerticalSlice/src        # Project Template source root directory.
+DotnetReactVerticalSlice            # Project directory
   |- src
-    |- Features/                    # A vertical slice is defined as a subfolder in this folder.
-      | - Todo                      # Todo-feature sample vertical slice.  
-        | - Backend                 # .Net/C# backend code.
-        | - Frontend                # React/TypeScript frontend code.
-    |- Backend                      # Backend Main.
+    |- Features/                    # All features are defined here
+      | - Todo                      # Todo-feature 
+        | - Backend                 # Backend part of feature.
+        | - Frontend                # Frontend part of code.
+    |- Backend                      # Backend Main and "infrastructure" code.
       |- Swagger                    # contains SwaggerGen registration files, automatically generates Open API definition for all REST APIs in the project.           
       |- IApiBuilder.cs             # Interface that enable each vertical slice to define it's own routing rules.
       |- IModelBuilder.cs           # Interface that enable each vertical slice to define it's own models within the database, although all models are in one shared database.
@@ -43,15 +38,16 @@ DotnetReactVerticalSlice/src        # Project Template source root directory.
       |- Program.cs                 # Main entry of application
       |- FeatureRegistrator.cs      # Scans assembly for classes and register feature backend-part.
       |- GlobalErrorHandler.cs      # API error handling.
-    |- Frontend                     # Frontend Main.
+    |- Frontend                     # Frontend Main and "infrastructure" code.
       |- index.tsx                  # Composition Root for the forntend.
       |- router.tsx                 # Setup url routing for React app (Composition Root)
 DotnetReactVerticalSlice.Tests/     # Unit tests project
 ```
 
-## Feature (Vertical Slice ) Registration
-The backend of a feature can be registered without any change to the main entry-method. Instead 
-registration can be done indirectly defining a static class with a name that ends with __Startup__ and
+
+## Registration Of a Vertical Slice
+The backend of a vertical slice or feature can be registered without any change to the main entry-method. Instead 
+registration can be done by convention through a static class with a name that ends with __Startup__ and
 a static method called __Register__ that takes a single parameter of type __IServiceCollection__ and define certain dependencies.
 During startup these classes will be scanned from the assembly and invoked so that 
 their services can be registered and bootstrapped, e.g:
@@ -60,12 +56,12 @@ public static class TodoStartup
 {
     public static void Register(this IServiceCollection services)
     {
-        //Features that define new data-model for persistence can 
-        //define and register an IModelBuilder dependency which models 
+        //Features that requires data-model for persistence using EF Core can 
+        //implement and register a IModelBuilder dependency. The models 
         //will be added to AppDbContext.
         services.AddSingleton<IModelBuilder, TodoModelBuilder>(); 
-        //Features that exposes new api endpoints can define and register this
-        //dependency to be automatically wired during hosting app startup.
+        //Features that exposes new api endpoints can implement and register a
+        //IApiBuilder to be automatically wired during app startup.
         services.AddSingleton<IApiBuilder, TodoApiBuilder>();
     }
 }
@@ -84,14 +80,14 @@ classes whose source has been changed. In cases where classes have indirect depe
 a hot reloaded might not occur and so a manual restart of the processes might be needed. 
 
 
-## Publish project to folder
+## Publish project to directory
 
 
 ```shell
 dotnet publish
 ```
-The resulting artifact-folder will be in __/bin/&lt; Debug | Release &gt;/net7.0/publish__
-and the React build artifact will be in the subfolder __wwwroot__.
+The resulting artifact-directory will be in __/bin/&lt; Debug | Release &gt;/net7.0/publish__
+and the React build artifact will be in the subdirectory __wwwroot__.
 
 ## Generate Frontend Client Code For API 
 To automatically generate typescript client code from OpenAPI (swagger) definition run the following
@@ -103,6 +99,15 @@ npm run generate
 ```
 
 Note that the backend must be running and expose Swagger (OpenApi) definitions.
+
+## Issues and Limitations
+* I've choosen to keep frontend and backend code files in separate subdirectories, both for main and each feature.
+This can cause an issue with Namespace Code Inspection-rule in IDEs as the .Net code convention is
+that namespace match directory-paths of a class. I've choosen to disable this in my IDE (Rider by JetBrains)
+for specific directories.
+* Currently a .Net Test Project is still needed for unit testing. For the frontend it's already possible to have test code files
+reside in same directory as code that's being tested.
+with the code.
 
 ## Deployment to Production
 TODO
