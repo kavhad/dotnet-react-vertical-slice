@@ -1,7 +1,7 @@
 # .NET/React.JS with Vertical Slice Architecture
 Boilerplate code for fullstack development with .NET and React that implements
-Vertical Slice Architecture. Each slice runs through 
-both backend and frontend so that frontend and backend code for features live side by side. 
+Vertical Slice Architecture. Each slice (or feature) runs through 
+both backend and frontend code so that both code is side by side. 
 
 Further we reduce the need to write client API glue code by using SwaggerGen and
 the npm package openapi-typescript-codegen
