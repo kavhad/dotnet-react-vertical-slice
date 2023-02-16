@@ -7,7 +7,7 @@ namespace DotnetReactVerticalSlice.Features.Todo;
 
 public static class TodosAppApi
 { 
-    [ProducesResponseType(StatusCodes.Status200OK, Type=typeof(List<TodoListDto>))]
+    [ProducesResponseType(type:typeof(List<TodoListDto>), statusCode:StatusCodes.Status200OK, contentType: "application/json")]
     internal static async Task<IResult> GetTodos([FromServices] AppDbContext dbContext)
     {
         var todoListSet = 
@@ -20,7 +20,7 @@ public static class TodosAppApi
             );
     }
     
-    [ProducesResponseType(StatusCodes.Status200OK, Type=typeof(TodoListDto))]
+    [ProducesResponseType(type:typeof(TodoListDto), statusCode:StatusCodes.Status200OK, contentType: "application/json")]
     internal static async Task<IResult> GetTodo([FromServices] AppDbContext dbContext, int id)
     {
         var todoListSet = 
@@ -37,7 +37,7 @@ public static class TodosAppApi
         return Results.Ok(new TodoListDto(todoList));
     }
 
-    [ProducesResponseType(StatusCodes.Status200OK, Type=typeof(TodoListDto))]
+    [ProducesResponseType(type:typeof(TodoListDto), statusCode:StatusCodes.Status200OK, contentType: "application/json")]
     internal static async Task<IResult> CreateTodoList([FromServices] AppDbContext dbContext, [FromBody] NewTodoListDto newTodoListDto)
     {
         var todoListSet = dbContext.Set<TodoList>();

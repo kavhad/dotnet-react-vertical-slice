@@ -23,7 +23,7 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
-    "generate": "npx openapi --input 'http://localhost:5001/swagger/v1/swagger.json' --output ./src/.generated"
+    "generate": "npx openapi --input 'http://localhost:5001/swagger/v1/swagger.json' --output ./src/Frontend/.generated"
   },
   "eslintConfig": {
     "extends": [
