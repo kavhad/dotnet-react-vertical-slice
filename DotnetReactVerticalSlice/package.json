@@ -19,9 +19,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject",
     "generate": "npx openapi --input 'http://localhost:5001/swagger/v1/swagger.json' --output ./src/.generated"
   },
@@ -44,6 +44,7 @@
     ]
   },
   "devDependencies": {
-    "openapi-typescript-codegen": "^0.23.0"
+    "openapi-typescript-codegen": "^0.23.0",
+    "react-app-rewired": "^2.2.1"
   }
 }

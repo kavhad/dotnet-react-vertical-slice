@@ -1,4 +1,4 @@
-namespace DotnetReactVerticalSlice.Features.Swagger;
+namespace DotnetReactVerticalSlice.Swagger;
 
 public class SwaggerApiBuilder : IApiBuilder
 {

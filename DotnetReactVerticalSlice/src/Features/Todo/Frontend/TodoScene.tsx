@@ -1,7 +1,6 @@
 import TodoListView from "./TodoListView";
 import {useEffect, useState} from "react";
-import {TodosAppApiService} from "../../.generated";
-import {TodoListDto} from "../../.generated";
+import {TodosAppApiService, TodoListDto} from "../../../Frontend/.generated";
 
 export default function TodoScene() {
     

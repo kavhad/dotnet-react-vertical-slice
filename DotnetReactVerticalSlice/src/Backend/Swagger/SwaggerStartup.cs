@@ -3,7 +3,7 @@ using Microsoft.OpenApi.Extensions;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace DotnetReactVerticalSlice.Features.Swagger;
+namespace DotnetReactVerticalSlice.Swagger;
 
 public static class SwaggerStartup
 {

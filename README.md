@@ -1,20 +1,26 @@
 # .NET/React.JS with Vertical Slice Architecture
-An opinionated boilerplace code for Fullstack development of 
-web applications for fullstack developers who use .NET and React. 
-The project implements a Vertical Slice Architecture for both backend and
-frontend meaning no separate ClientApp folder.
+An opinionated boiler plate code for Fullstack developer with .NET and React. 
+
+The project implements a Vertical Slice Architecture that runs through 
+backend and frontend (meaning no separate ClientApp folder for frontend parts). 
+Further we reduce the need to write client API glue code by using SwaggerGen and
+the excellent npm package openapi-typescript-codegen
+(https://github.com/ferdikoomen/openapi-typescript-codegen).
 
 ### Build status
 [![.NET](https://github.com/kavhad/dotnet-project-templates/actions/workflows/dotnet.yml/badge.svg)](https://github.com/kavhad/dotnet-project-templates/actions/workflows/dotnet.yml)
 
 
-## Vertical Slice Architecture
+## Benifits of Vertical Slice Architecture
 Vertical slice architecture is a software design approach that involves creating small, 
 self-contained modules for individual features of an application. This allows for parallel development, 
 reduced dependencies, and improved agility in large and complex applications. The benefits 
 include improved maintainability, scalability, and flexibility, as well as faster time-to-market 
 and greater developer productivity.
 
+The disadvantage of this architecture in this specific project type is 
+that we don't get clean separation of horizontal layers e.g if we have separate coders that
+work exclusively on backend and frontend they still see files on both parts.
 
 ### Folder structure
 
@@ -24,16 +30,21 @@ Here's a folder structure for the MinimalAPI project:
 DotnetReactVerticalSlice/src        # Project Template source root directory.
   |- src
     |- Features/                    # A vertical slice is defined as a subfolder in this folder.
-       | - Todo                     # Todo-feature sample vertical slice.  
-       | - Swagger                  # Swagger-feature, automatically generates Open API definition for all REST APIs in the project.           
-    |- IApiBuilder.cs               # Interface that enable each vertical slice to define it's own routing rules.
-    |- IModelBuilder.cs             # Interface that enable each vertical slice to define it's own models within the database, although all models are in one shared database.
-    |- AppDbContext.cs              # The application db context which is an abstraction over a shared database for all vertical slices. 
-    |- appsettings.json             # Global application configuration.
-    |- Program.cs                   # Main entry of application
-    |- FeatureRegistrator           # Scans assembly for classes that register features
-    |- GlobalErrorHandler.cs        # API error handling
-    |- index.tsx                    # React main
+      | - Todo                      # Todo-feature sample vertical slice.  
+        | - Backend                 # .Net/C# backend code
+        | - Frontend                # React/TypeScript frontend code
+    |- Backend
+      |- Swagger                    # contains SwaggerGen registration files, automatically generates Open API definition for all REST APIs in the project.           
+      |- IApiBuilder.cs             # Interface that enable each vertical slice to define it's own routing rules.
+      |- IModelBuilder.cs            # Interface that enable each vertical slice to define it's own models within the database, although all models are in one shared database.
+      |- AppDbContext.cs             # The application db context which is an abstraction over a shared database for all vertical slices. 
+      |- appsettings.json            # Global application configuration.
+      |- Program.cs                  # Main entry of application
+      |- FeatureRegistrator.cs       # Scans assembly for classes that register features
+      |- GlobalErrorHandler.cs       # API error handling
+    |- Frontend
+      |- index.tsx                    # React main entry
+      |- router.tsx                   # Setup url routing for React app
 DotnetReactVerticalSlice.Tests/     # Unit tests project
 ```
 

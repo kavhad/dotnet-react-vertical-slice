@@ -1,4 +1,4 @@
-import {TodoItemDto, TodoListDto} from "../../.generated";
+import {TodoItemDto, TodoListDto} from "../../../Frontend/.generated";
 import {useState} from "react";
 
 export default function TodoListView({todoLists}:{todoLists:TodoListDto[] | undefined}) {
