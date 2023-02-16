@@ -45,12 +45,13 @@ DotnetReactVerticalSlice.Tests/     # Unit tests project
 ```
 
 
-## Registration Of a Vertical Slice
-The backend of a vertical slice or feature can be registered without any change to the main entry-method. Instead 
-registration can be done by convention through a static class with a name that ends with __Startup__ and
-a static method called __Register__ that takes a single parameter of type __IServiceCollection__ and define certain dependencies.
-During startup these classes will be scanned from the assembly and invoked so that 
-their services can be registered and bootstrapped, e.g:
+## Feature Registration
+The backend part of a feature can be registered without any change to the main entry-method. Instead 
+registration is done by assembly scanning classes and methods that adopt following specific convention:
+
+A static class with a name that ends with __Startup__ and
+a static method called __Register__ that takes a single parameter of type __IServiceCollection__.
+Here's an example with some explanation of what is being registered and why.
 ```csharp
 public static class TodoStartup
 {
@@ -105,9 +106,9 @@ Note that the backend must be running and expose Swagger (OpenApi) definitions.
 This can cause an issue with Namespace Code Inspection-rule in IDEs as the .Net code convention is
 that namespace match directory-paths of a class. I've choosen to disable this in my IDE (Rider by JetBrains)
 for specific directories.
-* Currently a .Net Test Project is still needed for unit testing. For the frontend it's already possible to have test code files
-reside in same directory as code that's being tested.
-with the code.
+* Currently a .Net Test Project is still needed for unit testing backend and code. 
+It would be ideal to have code files and test code files side by side if we want to strictly adopt
+vertical slice architecture.
 
 ## Deployment to Production
 TODO
