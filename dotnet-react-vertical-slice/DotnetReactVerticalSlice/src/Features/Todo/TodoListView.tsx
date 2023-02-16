@@ -1,5 +1,5 @@
-import {TodoItemDto, TodoListDto, TodosAppApiService} from "../../.generated";
-import {useEffect, useState } from "react";
+import {TodoItemDto, TodoListDto} from "../../.generated";
+import {useState} from "react";
 
 export default function TodoListView({todoLists}:{todoLists:TodoListDto[] | undefined}) {
     

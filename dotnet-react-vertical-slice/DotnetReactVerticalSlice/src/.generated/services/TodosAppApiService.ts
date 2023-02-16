@@ -38,6 +38,31 @@ export class TodosAppApiService {
             path: {
                 'id': id,
             },
+            errors: {
+                400: `Bad Request`,
+                500: `Internal Server Error`,
+            },
+        });
+    }
+
+    /**
+     * @param id
+     * @returns any Success
+     * @throws ApiError
+     */
+    public static deleteTodoList(
+        id: number,
+    ): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/todo-list/{id}',
+            path: {
+                'id': id,
+            },
+            errors: {
+                400: `Bad Request`,
+                500: `Internal Server Error`,
+            },
         });
     }
 
@@ -54,6 +79,10 @@ export class TodosAppApiService {
             url: '/todo-list',
             body: requestBody,
             mediaType: 'application/json',
+            errors: {
+                400: `Bad Request`,
+                500: `Internal Server Error`,
+            },
         });
     }
 
@@ -70,6 +99,10 @@ export class TodosAppApiService {
             url: '/todo-list/changeName',
             body: requestBody,
             mediaType: 'application/json',
+            errors: {
+                400: `Bad Request`,
+                500: `Internal Server Error`,
+            },
         });
     }
 
@@ -91,6 +124,10 @@ export class TodosAppApiService {
             },
             body: requestBody,
             mediaType: 'application/json',
+            errors: {
+                400: `Bad Request`,
+                500: `Internal Server Error`,
+            },
         });
     }
 
@@ -112,6 +149,10 @@ export class TodosAppApiService {
             },
             body: requestBody,
             mediaType: 'application/json',
+            errors: {
+                400: `Bad Request`,
+                500: `Internal Server Error`,
+            },
         });
     }
 
