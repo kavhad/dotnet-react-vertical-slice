@@ -51,16 +51,16 @@ public class TodosAppApiTests
         var dbContext = dbContextHolder.DbContext;
         
         //Act
-        var results = (Ok<TodoList>) await TodosAppApi.CreateTodoList(dbContext,
+        var results = (Ok<TodoListDto>) await TodosAppApi.CreateTodoList(dbContext,
             new NewTodoListDto("test-list", 
                 new List<NewTodoItem>(new[] { new NewTodoItem("test-item", false) })));
         
         //Assert
         Assert.Equal(200, results.StatusCode);
-        Assert.Equal(1, results.Value?.Id);
-        Assert.Equal("test-list", results.Value?.Name);
-        Assert.Equal("test-item", results.Value?.Todos.Single().Name);
-        Assert.Equal(false, results.Value?.Todos.Single().IsComplete);
+        Assert.Equal(1, results.Value?.id);
+        Assert.Equal("test-list", results.Value?.name);
+        Assert.Equal("test-item", results.Value?.list.Single().name);
+        Assert.Equal(false, results.Value?.list.Single().isComplete);
     }
     
     [Fact]
