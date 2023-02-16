@@ -83,4 +83,14 @@ public static class TodosAppApi
         return Results.Ok();
         
     }
+
+    internal static async Task DeleteTodoList(HttpContext context, [FromServices] AppDbContext dbContext, int id)
+    {
+        var todoListSet = dbContext.Set<TodoList>();
+        if(await todoListSet.FindAsync(id) is { } todoList)
+            todoListSet.Remove(todoList);
+        
+        await dbContext.SaveChangesAsync();
+
+    }
 }
