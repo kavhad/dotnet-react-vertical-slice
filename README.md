@@ -19,8 +19,8 @@ include improved maintainability, scalability, and flexibility, as well as faste
 and greater developer productivity.
 
 The disadvantage of this architecture in this specific project type is 
-that we don't get clean separation of horizontal layers e.g if we have separate coders that
-work exclusively on backend and frontend they still see files on both parts.
+that we don't get clean separation of horizontal layers e.g if a team have coders that
+work exclusively on backend and frontend they still see and can access files for both parts of the system.
 
 ### Folder structure
 
