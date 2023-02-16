@@ -39,8 +39,8 @@ DotnetReactVerticalSlice            # Project directory
       |- FeatureRegistrator.cs      # Scans assembly for classes and register feature backend-part.
       |- GlobalErrorHandler.cs      # API error handling.
     |- Frontend                     # Frontend Main and "infrastructure" code.
-      |- index.tsx                  # Composition Root for the forntend.
-      |- router.tsx                 # Setup url routing for React app (Composition Root)
+      |- index.tsx                  # Main entry-method for frontend code.
+      |- router.tsx                 # Frontend routing rules are defined here
 DotnetReactVerticalSlice.Tests/     # Unit tests project
 ```
 
