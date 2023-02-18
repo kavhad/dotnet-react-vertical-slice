@@ -41,7 +41,6 @@ DotnetReactVerticalSlice            # Project directory
     |- Frontend                     # Frontend Main and "infrastructure" code.
       |- index.tsx                  # Main entry-method for frontend code.
       |- router.tsx                 # Frontend routing rules are defined here
-DotnetReactVerticalSlice.Tests/     # Unit tests project
 ```
 
 
@@ -69,6 +68,17 @@ public static class TodoStartup
 ```
 
 Frontend registration has to be done centrally in the main part of the frontend.
+
+## Unit Testing
+Test files for frontend Javascript or TypeScript code is put side by side in the same directory 
+as is standard when creating a CRA (create react app) project.
+
+For C# backend code test-files is also put side by side in 
+the same directory. This is not convention in .NET but to strictly following the principles 
+behind vertical slice architecture which is greater code cohesion. 
+<br />We avoid shipping test code to production by using a custom .csproj files that match the
+pattern *.Tests.cs will be removed when building the project in Release-mode, also test library
+packages are only included when the project is NOT in Release-mode.
 
 ## Running Project From Command Line
 To start the development backend and frontend server run the following command in your shell:
@@ -106,9 +116,8 @@ Note that the backend must be running and expose Swagger (OpenApi) definitions.
 This can cause an issue with Namespace Code Inspection-rule in IDEs as the .Net code convention is
 that namespace match directory-paths of a class. I've choosen to disable this in my IDE (Rider by JetBrains)
 for specific directories.
-* Currently a .Net Test Project is still needed for unit testing backend and code. 
-It would be ideal to have code files and test code files side by side if we want to strictly adopt
-vertical slice architecture.
 
 ## Deployment to Production
-TODO
+Currently there's no preference for how to create a deliverable artifact into production. 
+This depends of course specific target environment and if you want to ship frontend and 
+backend together. 

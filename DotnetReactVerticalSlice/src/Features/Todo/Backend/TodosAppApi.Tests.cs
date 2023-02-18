@@ -1,10 +1,9 @@
-using System.Collections.Immutable;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
-using DotnetReactVerticalSlice.Features.Todo;
-using DotnetReactVerticalSlice;
+using Xunit;
 
-namespace DotnetReactVerticalSlice.Tests.Features.Todo;
+
+namespace DotnetReactVerticalSlice.Features.Todo;
 
 public class TodosAppApiTests
 {

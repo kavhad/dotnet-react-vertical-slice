@@ -28,6 +28,7 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --verbosity normal
-      working-directory: DotnetReactVerticalSlice.Tests
+    - name: Run Backend Tests (.NET)
+      run: dotnet test --no-build --verbosity normal
+    - name: Run Frontend Tests (Jest)
+      run: npm test
