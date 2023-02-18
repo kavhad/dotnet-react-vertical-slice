@@ -6,7 +6,12 @@ using DotnetReactVerticalSlice;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.RegisterAllFeatures();
-builder.Services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("MinimalApi"));
+
+var connectionString = builder.Configuration.GetConnectionString("AppDatabase");
+
+builder.Services.AddDbContext<AppDbContext>(
+    options => 
+        options.UseSqlite(connectionString));
 
 var app = builder.Build();
 

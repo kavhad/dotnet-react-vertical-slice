@@ -6,6 +6,20 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="7.0.3">
+      <!-- The SPA Proxy is only used at development time -->
+      <Publish>false</Publish>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.3">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.3" />
+  </ItemGroup>
+  
   <ItemGroup Condition=" '$(Configuration)' == 'Release'">
     <!-- Don't include test files for compilation when building for production and acceptance environments (in Release-mode). -->
     <Compile Remove="**\*.Tests.cs" />
@@ -13,6 +27,7 @@
 
   <ItemGroup Condition="'$(Configuration)' != 'Release'">
     <!-- If not in Release mode included test libraries. -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
@@ -25,15 +40,6 @@
     </PackageReference>
   </ItemGroup>
   
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.2" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-    <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="7.0.3">
-      <!-- The SPA Proxy is only used at development time -->
-      <Publish>false</Publish>
-    </PackageReference>
-  </ItemGroup>
 
   <PropertyGroup>
     <SpaRoot>$(ProjectDir)</SpaRoot>
