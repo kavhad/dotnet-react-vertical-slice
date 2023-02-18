@@ -5,11 +5,14 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
-  <ItemGroup Condition="'$(Configuration)' == 'Release'">
+  
+  <ItemGroup Condition=" '$(Configuration)' == 'Release'">
+    <!-- Don't include test files for compilation when building for production and acceptance environments (in Release-mode). -->
     <Compile Remove="**\*.Tests.cs" />
   </ItemGroup>
+
   <ItemGroup Condition="'$(Configuration)' != 'Release'">
+    <!-- If not in Release mode included test libraries. -->
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
