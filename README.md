@@ -27,20 +27,10 @@ DotnetReactVerticalSlice            # Project directory
   |- src
     |- Features/                    # All features are defined here
       | - Todo                      # Todo-feature 
-        | - Backend                 # Backend part of feature.
-        | - Frontend                # Frontend part of code.
-    |- Backend                      # Backend Main and "infrastructure" code.
-      |- Swagger                    # contains SwaggerGen registration files, automatically generates Open API definition for all REST APIs in the project.           
-      |- IApiBuilder.cs             # Interface that enable each vertical slice to define it's own routing rules.
-      |- IModelBuilder.cs           # Interface that enable each vertical slice to define it's own models within the database, although all models are in one shared database.
-      |- AppDbContext.cs            # The application db context which is an abstraction over a shared database for all vertical slices. 
-      |- appsettings.json           # Global application configuration.
-      |- Program.cs                 # Main entry of application
-      |- FeatureRegistrator.cs      # Scans assembly for classes and register feature backend-part.
-      |- GlobalErrorHandler.cs      # API error handling.
-    |- Frontend                     # Frontend Main and "infrastructure" code.
-      |- index.tsx                  # Main entry-method for frontend code.
-      |- router.tsx                 # Frontend routing rules are defined here
+        | - Backend                 # Backend code of todo feature.
+        | - Frontend                # Frontend code of todo feature.
+    |- Backend                      # Backend common code.
+    |- Frontend                     # Frontend common code.
 ```
 
 
@@ -113,10 +103,11 @@ npm run generate
 Note that the backend must be running and expose Swagger (OpenApi) definitions.
 
 ## Issues and Limitations
-* I've choosen to keep frontend and backend code files in separate subdirectories, both for main and each feature.
-This can cause an issue with Namespace Code Inspection-rule in IDEs as the .Net code convention is
-that namespace match directory-paths of a class. I've choosen to disable this in my IDE (Rider by JetBrains)
-for specific directories.
+* Frontend and Backend code are kept separated in subdirectories, 
+but not from the top level instead from common code level and each feature.
+This caused some minor problems in my IDE (Rider) which had code inspection-rules for .NET code that expects
+a perfect match between directory path of a class-file and it's namespaces, which I didn't want for
+the Backend and Frontend folders. Luckily Rider have a setting to disable these directories as namespace-providers.
 
 ## Deployment to Production
 Currently there's no preference for how to create a deliverable artifact into production. 
