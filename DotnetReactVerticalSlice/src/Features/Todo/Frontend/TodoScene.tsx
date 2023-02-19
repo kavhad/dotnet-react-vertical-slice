@@ -10,18 +10,7 @@ export default function TodoScene() {
         TodosAppApiService
             .getTodoListAll()
             .then(res => {
-                if(res.length === 0)
-                    TodosAppApiService.postTodoList({
-                        name: "My todos",
-                        list: [{
-                            name: "MinimalAPI",
-                            isComplete: false
-                        }]
-                    }).then(res => {
-                        setTodoLists([res]);
-                    })
-                else 
-                    setTodoLists(res);
+                setTodoLists(res);
             })
     }, []);
     
