@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{D446D67E-D
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 		LICENCE.md = LICENCE.md
+		DotnetReactVerticalSlice\.template.config\template.json = DotnetReactVerticalSlice\.template.config\template.json
 	EndProjectSection
 EndProject
 Global

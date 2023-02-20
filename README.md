@@ -108,8 +108,3 @@ npm run generate
 we divide some code up in Frontend and Backend directories which we don't want to show up as .NET-namespaces
 as it's clear all C# code is backend code in this project. In Rider (IDE) I've decided to 
 disregard these specific directories as namespace-providers.
-
-## Deployment to Production
-Currently there's no preference for how to create a deliverable artifact into production. 
-This depends of course specific target environment and if you want to ship frontend and 
-backend together. 
