@@ -2,13 +2,13 @@
   "$schema": "http://json.schemastore.org/template",
   "author": "Kaveh Hadjari",
   "classifications": [ "Web", "SPA", "WebAPI" ],
-  "identity": "ExampleTemplate.DotnetReactVerticalSlice",
+  "identity": "DotnetReactVerticalSlice",
   "name": " Dotnet React Vertical Slice",
   "shortName": "dotnetreact",
   "tags": {
     "language": "C#",
     "type": "project"
   },
-  "sourceName": "WebSPA.React",
+  "sourceName": "DotnetReactVerticalSlice",
   "preferNameDirectory": true
 }
