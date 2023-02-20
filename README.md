@@ -71,43 +71,43 @@ so that when files with match the pattern *.Tests.cs will be removed when buildi
 in Release-mode, also test library packages are only included when the project 
 is NOT in Release-mode.
 
-## Running Project From Command Line
-To start the development backend and frontend server run the following command in your shell:
+## Running Project For Local Development
+To start the development server run the following command in your shell:
 
 ```shell
 dotnet watch --project DotnetReactVerticalSlice
+# this will build and run your project on a local development server.
+# Also class-files will be watched and on a change will trigger hot-reload, but
+# in some cases a complete reload of the processes is needed.
 ```
-This will start the development server and a watch process that will hot reload any
-classes whose source has been changed. In cases where classes have indirect dependencies 
-a hot reloaded might not occur and so a manual restart of the processes might be needed. 
 
-
-## Publish project to directory
-
+## Build & Run the project with Docker
 
 ```shell
-dotnet publish
+cd DotnetReactVerticalSlice
+# run following to create a docker container image named dotnet-react-vertical-slice (the name is defined in .csproj-file)
+dotnet publish --os linux --arch x64 /t:PublishContainer -c Release
+# run following to start a container with the just created image:
+docker run --name dotnet-react-vertical-slice -p 8080:80 -d dotnet-react-vertical-slice:1.0.0
+# browse to localhost:8080
 ```
-The resulting artifact-directory will be in __/bin/&lt; Debug | Release &gt;/net7.0/publish__
-and the React build artifact will be in the subdirectory __wwwroot__.
 
-## Generate Frontend Client Code For API 
-To automatically generate typescript client code from OpenAPI (swagger) definition run the following
-and make sure backend development server is running.
+## Generate Frontend Client Code For API
+Some glue frontend code for calling Backend APIs is generated using a npm-package 
+called openapi-typescript-codegen. 
+ If you need to regenerate the code because an API-contract have changed run following command while 
+local development server is running:
 
 ```shell
 cd DotnetReactVerticalSlice
 npm run generate
 ```
 
-Note that the backend must be running and expose Swagger (OpenApi) definitions.
-
 ## Issues and Limitations
-* Frontend and Backend code are kept separated in subdirectories, 
-but not from the top level instead from common code level and each feature.
-This caused some minor problems in my IDE (Rider) which had code inspection-rules for .NET code that expects
-a perfect match between directory path of a class-file and it's namespaces, which I didn't want for
-the Backend and Frontend folders. Luckily Rider have a setting to disable these directories as namespace-providers.
+* This project does not follow the regular namespace-naming convention as most regular .NET-projects as
+we divide some code up in Frontend and Backend directories which we don't want to show up as .NET-namespaces
+as it's clear all C# code is backend code in this project. In Rider (IDE) I've decided to 
+disregard these specific directories as namespace-providers.
 
 ## Deployment to Production
 Currently there's no preference for how to create a deliverable artifact into production. 
