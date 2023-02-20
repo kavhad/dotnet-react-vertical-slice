@@ -103,8 +103,23 @@ cd DotnetReactVerticalSlice
 npm run generate
 ```
 
+## Install and use the dotnet template
+If you find this boilerplate code to be a good starting point
+for your fullstack .NET/ReactJS apps you can install it as a template
+using following commands:
+
+```shell
+cd DotnetReactVerticalSlice
+dotnet new install ./
+```
+
+After installing template you can create a new project with it with following command
+```shell
+dotnet new dotnetreact -n <ProjectName>
+```
+
 ## Issues and Limitations
 * This project does not follow the regular namespace-naming convention as most regular .NET-projects as
-we divide some code up in Frontend and Backend directories which we don't want to show up as .NET-namespaces
-as it's clear all C# code is backend code in this project. In Rider (IDE) I've decided to 
-disregard these specific directories as namespace-providers.
+  we divide some code up in Frontend and Backend directories which we don't want to show up as .NET-namespaces
+  as it's clear all C# code is backend code in this project. In Rider (IDE) I've decided to
+  disregard these specific directories as namespace-providers.
