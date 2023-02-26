@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
@@ -18,6 +19,19 @@ export default ({mode}) => {
                     secure: false
                 }
             }
-        }
+        },
+        test: {
+            globals: true,
+            environment: 'jsdom',
+            setupFiles: './src/Frontend/setupTests.ts',
+            coverage: {
+                provider: "c8",
+                reporter: ['text', 'html'],
+                exclude: [
+                    'node_modules/',
+                    'src/Frontend/setupTests.ts',
+                ],
+            },
+        },
     });
 }
