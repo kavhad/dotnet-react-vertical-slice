@@ -8,7 +8,7 @@ export default function TodoScene() {
     
     useEffect( () => {
         TodosAppApiService
-            .getTodoListAll()
+            .getApiV1TodoListAll()
             .then(res => {
                 setTodoLists(res);
             })

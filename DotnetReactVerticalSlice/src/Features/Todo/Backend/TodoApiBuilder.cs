@@ -6,13 +6,14 @@ public class TodoApiBuilder : IApiBuilder
 {
     public void BuildApi(WebApplication app)
     {
-        app.MapGet("/todo-list/all", TodosAppApi.GetTodos);
-        app.MapGet("/todo-list/{id}", TodosAppApi.GetTodo);
-        app.MapPost("/todo-list", TodosAppApi.CreateTodoList);
-        app.MapPut("/todo-list/changeName", TodosAppApi.ChangeTodoListName);
-        app.MapPut("/todo-item/{id}/changeName", TodosAppApi.ChangeTodoItemName);
-        app.MapPut("/todo-item/{id}/setTodoStatus", TodosAppApi.SetTodoItemStatus);
-        app.MapDelete("/todo-list/{id}", TodosAppApi.DeleteTodoList);
+        string basePath = "api/v1";
+        app.MapGet(basePath+"/todo-list/all", TodosAppApi.GetTodos);
+        app.MapGet(basePath+"/todo-list/{id}", TodosAppApi.GetTodo);
+        app.MapPost(basePath+"/todo-list", TodosAppApi.CreateTodoList);
+        app.MapPut(basePath+"/todo-list/changeName", TodosAppApi.ChangeTodoListName);
+        app.MapPut(basePath+"/todo-item/{id}/changeName", TodosAppApi.ChangeTodoItemName);
+        app.MapPut(basePath+"/todo-item/{id}/setTodoStatus", TodosAppApi.SetTodoItemStatus);
+        app.MapDelete(basePath+"/todo-list/{id}", TodosAppApi.DeleteTodoList);
         
         SeedData(app);
     }

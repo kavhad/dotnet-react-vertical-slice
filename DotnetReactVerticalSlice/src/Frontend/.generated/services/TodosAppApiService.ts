@@ -17,10 +17,10 @@ export class TodosAppApiService {
      * @returns TodoListDto Success
      * @throws ApiError
      */
-    public static getTodoListAll(): CancelablePromise<Array<TodoListDto>> {
+    public static getApiV1TodoListAll(): CancelablePromise<Array<TodoListDto>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/todo-list/all',
+            url: '/api/v1/todo-list/all',
         });
     }
 
@@ -29,12 +29,12 @@ export class TodosAppApiService {
      * @returns TodoListDto Success
      * @throws ApiError
      */
-    public static getTodoList(
+    public static getApiV1TodoList(
         id: number,
     ): CancelablePromise<TodoListDto> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/todo-list/{id}',
+            url: '/api/v1/todo-list/{id}',
             path: {
                 'id': id,
             },
@@ -50,12 +50,12 @@ export class TodosAppApiService {
      * @returns any Success
      * @throws ApiError
      */
-    public static deleteTodoList(
+    public static deleteApiV1TodoList(
         id: number,
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'DELETE',
-            url: '/todo-list/{id}',
+            url: '/api/v1/todo-list/{id}',
             path: {
                 'id': id,
             },
@@ -71,12 +71,12 @@ export class TodosAppApiService {
      * @returns TodoListDto Success
      * @throws ApiError
      */
-    public static postTodoList(
+    public static postApiV1TodoList(
         requestBody: NewTodoListDto,
     ): CancelablePromise<TodoListDto> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/todo-list',
+            url: '/api/v1/todo-list',
             body: requestBody,
             mediaType: 'application/json',
             errors: {
@@ -91,12 +91,12 @@ export class TodosAppApiService {
      * @returns any Success
      * @throws ApiError
      */
-    public static putTodoListChangeName(
+    public static putApiV1TodoListChangeName(
         requestBody: ChangeTodoListNameDto,
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'PUT',
-            url: '/todo-list/changeName',
+            url: '/api/v1/todo-list/changeName',
             body: requestBody,
             mediaType: 'application/json',
             errors: {
@@ -112,13 +112,13 @@ export class TodosAppApiService {
      * @returns any Success
      * @throws ApiError
      */
-    public static putTodoItemChangeName(
+    public static putApiV1TodoItemChangeName(
         id: number,
         requestBody: ChangeTodoItemNameDto,
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'PUT',
-            url: '/todo-item/{id}/changeName',
+            url: '/api/v1/todo-item/{id}/changeName',
             path: {
                 'id': id,
             },
@@ -137,13 +137,13 @@ export class TodosAppApiService {
      * @returns any Success
      * @throws ApiError
      */
-    public static putTodoItemSetTodoStatus(
+    public static putApiV1TodoItemSetTodoStatus(
         id: number,
         requestBody: ChangeTodoItemStatusDto,
     ): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'PUT',
-            url: '/todo-item/{id}/setTodoStatus',
+            url: '/api/v1/todo-item/{id}/setTodoStatus',
             path: {
                 'id': id,
             },
